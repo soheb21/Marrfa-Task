@@ -13,8 +13,6 @@ const Home = () => {
             <Title title={"New Arrival"} />
             <Products />
 
-
-
         </>
     )
 }

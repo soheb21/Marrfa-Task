@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Dropdown = ({ title, list = [] }) => {
+const Dropdown = ({ title, list = [], handleclickDD }) => {
     const [showDD, setShowDD] = useState(false)
     return (
         <div className='flex flex-col relative'>
@@ -10,18 +10,11 @@ const Dropdown = ({ title, list = [] }) => {
             </button>
             <div id="dropdownDelay" className={`z-10 absolute top-9     ${showDD ? "block" : "hidden"} rounded-lg overflow-hidden mt-[1.3px]    bg-gray-900   shadow w-32`}>
                 <ul className="py-2 rounded-lg text-sm text-white " aria-labelledby={title}>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-700 ">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-700 ">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-700 ">Earnings</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-700 ">Sign out</a>
-                    </li>
+                    {
+                        list.length > 0 && list.map((i) => <li key={i.slug}>
+                            <p onClick={() => handleclickDD(i?.slug)} className="block px-4 py-2 hover:bg-gray-700 ">{i?.name}</p>
+                        </li>)
+                    }
                 </ul>
             </div>
 
