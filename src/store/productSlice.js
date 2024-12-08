@@ -6,6 +6,7 @@ const initialState = {
     productsData: {},
     categories: [],
     searchData: [],
+    cart: [],
     error: null
 }
 
@@ -58,11 +59,20 @@ const productSlice = createSlice({
             state.categories = state.categories;
             state.error = action.payload;
         },
+        addToCart(state, action) {
+            state.cart.push(action.payload);
+        },
+        removeFromCart(state, action) {
+
+            let newCart = state.cart.filter((i) => i.id !== action.payload)
+            state.cart = newCart;
+        },
         clearAllProductErrors(state, action) {
             state.error = null;
             state.productsData = state.productsData;
             state.categories = state.categories;
             state.searchData = state.searchData;
+            state.cart = state.cart;
             state.loading = false;
         }
     }
@@ -70,10 +80,11 @@ const productSlice = createSlice({
 export const clearAllProductsErrorFun = () => (dispatch) => {
     dispatch(productSlice.actions.clearAllProductErrors());
 }
-export const getProducts = (page, category) => async (dispatch) => {
+export const getProducts = (page, category, sort) => async (dispatch) => {
     try {
         dispatch(productSlice.actions.productRequest());
-        const { data } = await axios.get(`${category ? ` https://dummyjson.com/products/category/${category}?limit=10&skip=${page}` : `https://dummyjson.com/products?limit=10&skip=${page}`}`);
+        const { title, order } = sort;
+        const { data } = await axios.get(`${category ? ` https://dummyjson.com/products/category/${category}?sortBy=${title}&order=${order}&limit=10&skip=${page}` : `https://dummyjson.com/products?sortBy=${title}&order=${order}&limit=10&skip=${page}`}`);
         dispatch(productSlice.actions.productSuccess(data));
         dispatch(productSlice.actions.clearAllProductErrors());
     } catch (e) {
@@ -116,4 +127,5 @@ export const getCategory = () => async (dispatch) => {
         }
     }
 }
+export const { addToCart, removeFromCart } = productSlice.actions;
 export default productSlice.reducer;

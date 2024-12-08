@@ -8,7 +8,7 @@ import { Carousel } from 'react-responsive-carousel';
 const Banner = () => {
     return (
         <Carousel centerMode={true} autoPlay={true} infiniteLoop={true} interval={3000} showThumbs={false}>
-            <div className='w-full'>
+            <div id='hero' className='w-full'>
                 <img className='object-contain md:object-cover  h-[350px] w-full md:h-[600px]' src={banner1} alt="banner1" />
 
             </div>

@@ -11,8 +11,8 @@ const Dropdown = ({ title, list = [], handleclickDD }) => {
             <div id="dropdownDelay" className={`z-10 absolute top-9     ${showDD ? "block" : "hidden"} rounded-lg overflow-hidden mt-[1.3px]    bg-gray-900   shadow w-32`}>
                 <ul className="py-2 rounded-lg text-sm text-white " aria-labelledby={title}>
                     {
-                        list.length > 0 && list.map((i) => <li key={i.slug}>
-                            <p onClick={() => handleclickDD(i?.slug)} className="block px-4 py-2 hover:bg-gray-700 ">{i?.name}</p>
+                        list.length > 0 && list.map((i, ind) => <li key={ind}>
+                            <p onClick={() => handleclickDD(i)} className="block px-4 py-2 hover:bg-gray-700 ">{i?.name}</p>
                         </li>)
                     }
                 </ul>
