@@ -2,10 +2,15 @@
 # Welcome to our React-powered e-commerce platform! called april Designed for seamless browsing and shopping, the homepage boasts the following features:
 
 Search with Suggestions: Quickly find products with an intuitive search bar that offers real-time suggestions as you type.
+
 Filter by Category: Narrow down your choices by selecting categories that match your preferences.
+
 Sorting Options: Sort products by price, popularity, or relevance for a personalized experience.
+
 Pagination: Smoothly navigate through product listings with well-structured pagination.
+
 Add to Cart: Effortlessly add items to your cart, ready for checkout.
+
 All functionalities are managed with React and state-driven by Redux and Redux Toolkit, ensuring fast, reliable, and scalable performance.
 
 
